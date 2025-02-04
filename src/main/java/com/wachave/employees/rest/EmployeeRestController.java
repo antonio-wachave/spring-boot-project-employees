@@ -3,10 +3,7 @@ package com.wachave.employees.rest;
 import com.wachave.employees.entities.Employee;
 import com.wachave.employees.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class EmployeeRestController {
     @GetMapping("/employees")
     public List<Employee> findAll(){
 
-        return this.employeeService.findAll();
+         return this.employeeService.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
@@ -37,5 +34,15 @@ public class EmployeeRestController {
         }
 
         return theEmployee;
+    }
+
+    @PostMapping("/employees")
+    public Employee save(@RequestBody Employee theEmployee){
+
+        theEmployee.setId(0);
+
+        Employee dbEmployees = this.employeeService.saveEmployee(theEmployee);
+
+        return dbEmployees;
     }
 }
