@@ -39,6 +39,4 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void deleteById(int employeeId) {
         this.employeeDAO.deleteById(employeeId);
     }
-
-
 }
